@@ -2,11 +2,17 @@ alignment top_right
 background yes
 border_width 1
 cpu_avg_samples 2
+
+#Colors
+default_outline_color 0077FF
+default_shade_color 0077FF
 default_color 88BBFF
 color0 0077FF
 color1 FFFFFF
-default_outline_color 0077FF
-default_shade_color 0077FF
+color2 D60650
+color3 00FF00
+
+
 double_buffer yes
 draw_borders no
 draw_graph_borders yes
@@ -18,11 +24,11 @@ maximum_width 350
 max_port_monitor_connections 64
 max_specials 512
 max_user_text 16384
-minimum_size 330 10
+minimum_size 750 350
 net_avg_samples 2
 no_buffers yes
 out_to_console no
-wm_class_name Conky
+own_window_class Conky
 own_window_colour black
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_transparent yes
@@ -31,49 +37,54 @@ own_window yes
 stippled_borders 2
 update_interval 2
 uppercase no
-use_spacer yes
 use_xft yes
 xftalpha 0.8
 xftfont  Bitstream Vera Sans Mono:size=9
 
 TEXT
-${font size:40}${alignr}${color}${time %k:%M:%S}
 
-${font size:25}${color0}${sysname} ${kernel} ${machine}${font}
+${voffset 8}${color2}${font Caviar Dreams:size=16}${time %A}${font}${voffset -15}${alignr 50}${color1}${font Caviar Dreams:size=38}${time %e}${font}
+${color FFFFFF}${voffset -30}${color1}${font Caviar Dreams:size=18}${time %b}${font}${voffset -3} ${color1}${font Caviar Dreams:size=20}${time %Y}${font}${color2}${hr}
 
-${font size:14}${color0}CPU & RAM ${hr 1}${font}
+${alignc}${font Caviar Dreams:size=18}${color0}${sysname} ${kernel}
+${alignc}${font Caviar Dreams:size=14}${machine}${font}
 
-${alignc}Frequency: ${freq}MHz
+${color}IP Addresses
+${color3}Internal: ${color1}${addr eth0}${alignr}${color3}External: ${color1}${exec ~/.conky/external_ip.sh}
 
-${color0}Core1:${color}${exec ~/.conky/cpu_temp.sh 0} ${color1} / ${color0}Core2:${color}${exec ~/.conky/cpu_temp.sh 1}
-${color0}Core3:${color}${exec ~/.conky/cpu_temp.sh 2} ${color1} / ${color0}Core4:${color}${exec ~/.conky/cpu_temp.sh 3}
+${font Caviar Dreams:size=16}${color FFFFFF}CPU & RAM${color}${font} ${color D60650}${hr 1}
+
+${alignc}${color3}Frequency: ${color1}${freq}MHz
+
+${color3}Core1:${color1}${exec ~/.conky/cpu_temp.sh 0} ${color2} / ${color3}Core2:${color1}${exec ~/.conky/cpu_temp.sh 1}
+${color3}Core3:${color1}${exec ~/.conky/cpu_temp.sh 2} ${color2} / ${color3}Core4:${color1}${exec ~/.conky/cpu_temp.sh 3}
 ${color0}${cpugraph}
 
 ${color0}RAM Usage: $color$memperc%$alignr$mem${color0}/${color}$memmax
 ${color0}$membar
 
-${font size:14}${color0}Network ${hr 1}${font}
-${color0}Down: $color${downspeed eth1}$alignr${totaldown eth1}
-${color0}${downspeedgraph eth1 32,210 0077ff 0077ff}
-${color0}Up:   $color${upspeed eth1}$alignr${totalup eth1}
-${color0}${upspeedgraph eth1 32,210 0077FF 0077ff}
+${font Caviar Dreams:size=16}${color FFFFFF}Network${color}${font} ${color D60650}${hr 1}}
+${color0}Down: $color${downspeed eth0}$alignr${totaldown eth0}
+${color0}${downspeedgraph eth0 32,210 0077ff 0077ff}
+${color0}Up:   $color${upspeed eth0}$alignr${totalup eth0}
+${color0}${upspeedgraph eth0 32,210 0077FF 0077ff}
 
-${font size:14}${color0}File systems ${hr 1}${font}
+${font Caviar Dreams:size=16}${color FFFFFF}File Systems${color}${font} ${color D60650}${hr 1}}
 ${color}/
 ${color0}${fs_bar 5,210 /}$alignr$color${fs_used /}${color1} / $color${fs_size /}
 ${color}/home
 ${color0}${fs_bar 5,210 /home}$alignr$color${fs_used /home}${color1} / $color${fs_size /home}
-${color}/media/local/sammyevo-big
-${color0}${fs_bar 5,210 /media/local/sammyevo-big}$alignr$color${fs_used /media/local/sammyevo-big}${color1}/ $color${fs_size /media/local/sammyevo-big}
+${color}/home/andrew/Downloads
+${color0}${fs_bar 5,210 /home/andrew/Downloads}$alignr$color${fs_used /home/andrew/Downloads}${color1}/ $color${fs_size /home/andrew/Downloads}
+#${color}/media/local/sammy840raid0-big
+#${color0}${fs_bar 5,210 /media/local/sammy840raid0-big}$alignr$color${fs_used /media/local/sammy840raid0-big}${color1}/ $color${fs_size /media/local/sammy840raid0-big}
 ${color}/media/nfs/backup
 ${color0}${fs_bar 5,210 /media/nfs/backup}$alignr$color${fs_used /media/nfs/backup}${color1} / $color${fs_size /media/nfs/backup}
-${color}/media/nfs/alt-backup
-${color0}${fs_bar 5,210 /media/nfs/alt-backup}$alignr$color${fs_used /media/nfs/alt-backup}${color1} / $color${fs_size /media/nfs/alt-backup}
 ${color}/media/nfs/vr-backup
 ${color0}${fs_bar 5,210 /media/nfs/vr-backup}$alignr$color${fs_used /media/nfs/vr-backup}${color1}/ $color${fs_size /media/nfs/vr-backup}
 
-${font size:14}${color0}Top: ${hr 1}${font}
-${alignc}CPU Usage
+${font Caviar Dreams:size=16}${color FFFFFF}Processes${color}${font} ${color D60650}${hr 1}
+${color0}${alignc}CPU Usage
 $color${top name 1}$alignr${top cpu 1}
 $color${top name 2}$alignr${top cpu 2}
 $color${top name 3}$alignr${top cpu 3}
@@ -85,8 +96,3 @@ $color${top_mem name 2}$alignr${top_mem mem_res 2}
 $color${top_mem name 3}$alignr${top_mem mem_res 3}
 $color${top_mem name 4}$alignr${top_mem mem_res 4}
 $color${top_mem name 5}$alignr${top_mem mem_res 5}
-
-${font size:14}${color0}Updates available: ${hr 1}${font}
-${color}${exec ~/.conky/pkg_updates.py}
-
-${color0}Total: ${color}${exec ~/.conky/pkg_updates.py -t}

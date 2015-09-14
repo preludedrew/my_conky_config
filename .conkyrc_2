@@ -1,0 +1,65 @@
+alignment top_right
+background yes
+border_width 1
+cpu_avg_samples 2
+
+#Colors
+default_outline_color 0077FF
+default_shade_color 0077FF
+default_color 88BBFF
+color0 0077FF
+color1 FFFFFF
+color2 D60650
+color3 00FF00
+
+
+double_buffer yes
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+gap_x 375 
+gap_y 15
+maximum_width 350
+max_port_monitor_connections 64
+max_specials 512
+max_user_text 16384
+minimum_size 750 350
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+own_window_class Conky
+own_window_colour black
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_transparent yes
+own_window_type normal
+own_window yes
+stippled_borders 2
+update_interval 5
+uppercase no
+use_xft yes
+xftalpha 0.8
+xftfont  Bitstream Vera Sans Mono:size=9
+
+TEXT
+${font Caviar Dreams:size=16}${color FFFFFF}Updates available (Top 5)${color}${font} ${color D60650}${hr 1}
+${color}${exec ~/.conky/pkg_updates-arch.py | head -5}
+
+${color0}Total: ${color}${exec ~/.conky/pkg_updates-arch.py -t}
+
+${font Caviar Dreams:size=16}${color FFFFFF}Remote Hosts${color}${font} ${color D60650}${hr 1}
+
+${color0}${alignc}CherryBomb ( NAS )
+${color3}Core1:${color1}${exec ~/.conky/cpu_temp_remote.sh 0 10.1.1.120} ${color2} / ${color3}Core2:${color1}${exec ~/.conky/cpu_temp_remote.sh 1 10.1.1.120}
+${color3}Core3:${color1}${exec ~/.conky/cpu_temp_remote.sh 2 10.1.1.120} ${color2} / ${color3}Core4:${color1}${exec ~/.conky/cpu_temp_remote.sh 3 10.1.1.120}
+
+${color0}${alignc}Router ( ClearOS )
+${color3}Core1:${color1}${exec ~/.conky/cpu_temp_remote.sh 0 10.1.1.1} ${color2} / ${color3}Core2:${color1}${exec ~/.conky/cpu_temp_remote.sh 1 10.1.1.1}
+
+${color0}${alignc}torr-Pi ( Ubuntu )
+${color3}Temp: ${color1}${exec ~/.conky/cpu_temp_remote_pi.sh 10.1.1.150}
+${color3}IP Address: ${color1}${exec ~/.conky/external_ip_remote.sh 10.1.1.150}
+
+${color0}${alignc}lamp-Pi ( Ubuntu )
+${color3}Temp: ${color1}${exec ~/.conky/cpu_temp_remote_pi.sh 10.1.1.151}
+${color3}IP Address: ${color1}${exec ~/.conky/external_ip_remote.sh 10.1.1.151}
